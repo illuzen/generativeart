@@ -5,7 +5,10 @@
 #' @param polar logical should the plot have a polar coordinate system ("polar = TRUE") or a cartesian coordinate system ("polar = FALSE")
 #' @param nr_of_img the number of images that should be created
 #' @param custom_seeds fix the seeds you want, overrides nr_of_img
-#' @param ... further arguments like color and background_color
+#' @param random_polar chooses polar with 50/50 probability, overrides polar argument
+#' @param random_color chooses random color and background_color, overrides those arguments
+#' @param color specifies the foreground color, default black
+#' @param background_color specifies the background color, default white
 #' @param filetype filetype of the final image. Default is `png`, for other options see the `devics` argument in `gggplot::gsave()`
 #' @return as many png files as you net in "nr_of_img"
 #' @seealso \code{\link{generate_seeds}} generate the seeds for the randomness
@@ -20,7 +23,7 @@
 #' generate_img(formula = my_formula, nr_of_img = 3, polar = FALSE, color = "#101820", background_color = "#F2AA4C")
 #' @importFrom purrr map
 
-generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", custom_seeds=NULL, random_color=FALSE, color="black", background_color="white") {
+generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", custom_seeds=NULL, random_polar=FALSE, random_color=FALSE, color="black", background_color="white") {
   if (is.null(custom_seeds)) {
     seeds <- generate_seeds(nr_of_img)
   } else {
@@ -31,6 +34,14 @@ generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", cu
     if (random_color) {
 	color <- rgb(runif(1,0,1),runif(1,0,1), runif(1,0,1))
         background_color <- rgb(runif(1,0,1),runif(1,0,1), runif(1,0,1))
+    }
+    if (random_polar) {
+        r <- runif(1, 0, 1)
+	if (r >= 0.5) {
+	    polar <- TRUE
+	} else {
+	    polar <- FALSE
+	}
     }
     file_name <- generate_filename(seed, filetype)
     logfile <- check_logfile_existence()
