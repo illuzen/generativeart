@@ -19,8 +19,12 @@
 #' generate_img(formula = my_formula, nr_of_img = 3, polar = FALSE, color = "#101820", background_color = "#F2AA4C")
 #' @importFrom purrr map
 
-generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", ...) {
-  seeds <- generate_seeds(nr_of_img)
+generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", custom_seeds=NULL...) {
+  if (is.null(custom_seeds)) {
+    seeds <- generate_seeds(nr_of_img)
+  } else {
+    seeds <- custom_seeds
+  }
   purrr::map(seeds, function(seed){
     set.seed(seed)
     file_name <- generate_filename(seed, filetype)
