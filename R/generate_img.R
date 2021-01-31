@@ -4,6 +4,7 @@
 #' @param formula the formula you want to use as a list
 #' @param polar logical should the plot have a polar coordinate system ("polar = TRUE") or a cartesian coordinate system ("polar = FALSE")
 #' @param nr_of_img the number of images that should be created
+#' @param custom_seeds fix the seeds you want, overrides nr_of_img
 #' @param ... further arguments like color and background_color
 #' @param filetype filetype of the final image. Default is `png`, for other options see the `devics` argument in `gggplot::gsave()`
 #' @return as many png files as you net in "nr_of_img"
@@ -19,7 +20,7 @@
 #' generate_img(formula = my_formula, nr_of_img = 3, polar = FALSE, color = "#101820", background_color = "#F2AA4C")
 #' @importFrom purrr map
 
-generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", custom_seeds=NULL...) {
+generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", custom_seeds=NULL, ...) {
   if (is.null(custom_seeds)) {
     seeds <- generate_seeds(nr_of_img)
   } else {
