@@ -20,7 +20,7 @@
 #' generate_img(formula = my_formula, nr_of_img = 3, polar = FALSE, color = "#101820", background_color = "#F2AA4C")
 #' @importFrom purrr map
 
-generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", custom_seeds=NULL, ...) {
+generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", custom_seeds=NULL, random_color=FALSE, color="black", background_color="white") {
   if (is.null(custom_seeds)) {
     seeds <- generate_seeds(nr_of_img)
   } else {
@@ -28,10 +28,14 @@ generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", cu
   }
   purrr::map(seeds, function(seed){
     set.seed(seed)
+    if (random_color) {
+	color <- rgb(runif(1,0,1),runif(1,0,1), runif(1,0,1))
+        background_color <- rgb(runif(1,0,1),runif(1,0,1), runif(1,0,1))
+    }
     file_name <- generate_filename(seed, filetype)
     logfile <- check_logfile_existence()
     logfile <- generate_logfile_entry(logfile, formula, seed, file_name)
     df <- generate_data(formula)
-    plot <- generate_plot(df, file_name, polar, filetype, ...)
+    plot <- generate_plot(df, file_name, polar, filetype, color, background_color)
   })
 }
