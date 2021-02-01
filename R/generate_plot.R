@@ -40,6 +40,6 @@ generate_plot <- function(df, file_name, polar, filetype, color = "black", backg
         ) +
       ggplot2::coord_fixed()
   }
-  ggplot2::ggsave(plot, filename = paste0(IMG_PATH, file_name), device = filetype)
+  ggplot2::ggsave(plot, filename = paste0(IMG_PATH, file_name), width=7, height=7, device = filetype)
   print("image saved...")
 }
