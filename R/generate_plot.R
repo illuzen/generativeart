@@ -36,9 +36,7 @@ generate_plot <- function(df, file_name, polar, filetype, color = "black", backg
       ggplot2::geom_point(alpha = 0.1, size = 0, shape = 20, color = color) +
       ggplot2::theme_void() +
       ggplot2::theme(
-        panel.background = element_rect(fill = background_color, color = background_color),
-        plot.background = element_rect(fill = background_color, color = background_color),
-        plot.margin = unit(c(0,0,0,0), "mm")
+        panel.background = element_rect(fill = background_color)
         ) +
       ggplot2::coord_fixed()
   }
