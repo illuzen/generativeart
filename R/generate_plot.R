@@ -35,9 +35,6 @@ generate_plot <- function(df, file_name, polar, filetype, color = "black", backg
       ggplot2::ggplot(ggplot2::aes(x = x, y = y)) +
       ggplot2::geom_point(alpha = 0.1, size = 0, shape = 20, color = color) +
       ggplot2::theme_void() +
-      ggplot2::theme(
-        panel.background = element_rect(fill = background_color)
-        ) +
       ggplot2::coord_fixed()
   }
   ggplot2::ggsave(plot, filename = paste0(IMG_PATH, file_name), width=7, height=7, device = filetype)
