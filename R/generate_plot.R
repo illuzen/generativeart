@@ -25,7 +25,6 @@ generate_plot <- function(df, file_name, polar, filetype, color = "black", backg
       ggplot2::theme_void() +
       ggplot2::ggtitle(title) + 
       ggplot2::theme(
-        panel.background = element_rect(fill = background_color),
         plot.background = element_rect(fill = background_color, size = 0),
 	plot.title = element_text(colour = color, size = 40, hjust = 0, vjust = 0)
         ) +
