@@ -21,8 +21,8 @@ generate_plot <- function(df, file_name, polar, filetype, color = "black", backg
   # faint_color <- paste(color, '00')
   faint_color <- color
   title_element <- element_text(colour = faint_color, face = 'bold', size = 256, hjust = 0.5, vjust = 0.5)
-  plot_background <- element_text(colour = faint_color, face = 'bold', size = 256, hjust = 0.5, vjust = 0.5)
-  #plot_background <- element_rect(fill = background_color, size = 0)
+  #plot_background <- element_text(colour = faint_color, face = 'bold', size = 256, hjust = 0.5, vjust = 0.5)
+  plot_background <- element_rect(fill = background_color, size = 0)
   if (polar == TRUE) {
     plot <- df %>%
       ggplot2::ggplot(ggplot2::aes(x = x, y = y)) +
