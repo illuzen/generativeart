@@ -18,8 +18,8 @@
 
 generate_plot <- function(df, file_name, polar, filetype, color = "black", background_color = "white", title = NULL) {
   print("generate plot")
-  faint_color <- paste(color, '30')
-  title_element <- element_text(colour = faint_color, face = 'bold', size = 256, hjust = 0.5, vjust = 0.5)
+  faint_color <- paste(color, '00')
+  title_element <- element_text(colour = faint_color, face = 'bold', size = 40, hjust = 0.5, vjust = 0.5)
   plot_background <- element_rect(fill = background_color, size = 0)
   if (polar == TRUE) {
     plot <- df %>%
