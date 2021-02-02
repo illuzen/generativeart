@@ -37,7 +37,7 @@ generate_plot <- function(df, file_name, polar, filetype, color = "black", backg
       ggplot2::ggtitle("2") + 
       ggplot2::theme(
 	plot.background = element_rect(fill = background_color, size = 0),
-	plot.title = element_text(colour = color, size = 0, hjust = 0, vjust = 0)
+	plot.title = element_text(colour = "black", size = 10, hjust = 0, vjust = 0)
         ) +
       ggplot2::coord_fixed()
   }
