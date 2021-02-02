@@ -34,8 +34,10 @@ generate_plot <- function(df, file_name, polar, filetype, color = "black", backg
       ggplot2::ggplot(ggplot2::aes(x = x, y = y)) +
       ggplot2::geom_point(alpha = 0.1, size = 0, shape = 20, color = color) +
       ggplot2::theme_void() +
+      ggplot2::ggtitle("2") + 
       ggplot2::theme(
-	plot.background = element_rect(fill = background_color, size = 0)
+	plot.background = element_rect(fill = background_color, size = 0),
+	plot.title = element_text(colour = color, size = 0, hjust = 0, vjust = 0)
         ) +
       ggplot2::coord_fixed()
   }
