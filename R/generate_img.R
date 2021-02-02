@@ -47,6 +47,6 @@ generate_img <- function(formula, nr_of_img, polar = FALSE, filetype = "png", cu
     logfile <- check_logfile_existence()
     logfile <- generate_logfile_entry(logfile, formula, seed, file_name)
     df <- generate_data(formula)
-    plot <- generate_plot(df, file_name, polar, filetype, color, background_color)
+    plot <- generate_plot(df, file_name, polar, filetype, color, background_color, seed)
   })
 }

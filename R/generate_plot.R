@@ -16,16 +16,18 @@
 #' @import ggplot2
 #' @importFrom magrittr %>%
 
-generate_plot <- function(df, file_name, polar, filetype, color = "black", background_color = "white") {
+generate_plot <- function(df, file_name, polar, filetype, color = "black", background_color = "white", title = NULL) {
   print("generate plot")
   if (polar == TRUE) {
     plot <- df %>%
       ggplot2::ggplot(ggplot2::aes(x = x, y = y)) +
       ggplot2::geom_point(alpha = 0.1, size = 0, shape = 20, color = color) +
       ggplot2::theme_void() +
+      ggplot2::ggtitle(title) + 
       ggplot2::theme(
         panel.background = element_rect(fill = background_color),
-        plot.background = element_rect(fill = background_color)
+        plot.background = element_rect(fill = background_color),
+	plot.title = element_text(colour = color, size = 40, hjust = 0, vjust = 0)
         ) +
       ggplot2::coord_fixed() +
       ggplot2::coord_polar()
@@ -34,10 +36,10 @@ generate_plot <- function(df, file_name, polar, filetype, color = "black", backg
       ggplot2::ggplot(ggplot2::aes(x = x, y = y)) +
       ggplot2::geom_point(alpha = 0.1, size = 0, shape = 20, color = color) +
       ggplot2::theme_void() +
-      ggplot2::ggtitle("2") + 
+      ggplot2::ggtitle(title) + 
       ggplot2::theme(
 	plot.background = element_rect(fill = background_color, size = 0),
-	plot.title = element_text(colour = "black", size = 10, hjust = 0, vjust = 0)
+	plot.title = element_text(colour = color, size = 40, hjust = 0, vjust = 0)
         ) +
       ggplot2::coord_fixed()
   }
