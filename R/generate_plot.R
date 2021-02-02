@@ -18,6 +18,9 @@
 
 generate_plot <- function(df, file_name, polar, filetype, color = "black", background_color = "white", title = NULL) {
   print("generate plot")
+  faint_color <- paste(color, '30')
+  title_element <- element_text(colour = faint_color, face = 'bold', size = 256, hjust = 0.5, vjust = 0.5)
+  plot_background <- element_rect(fill = background_color, size = 0)
   if (polar == TRUE) {
     plot <- df %>%
       ggplot2::ggplot(ggplot2::aes(x = x, y = y)) +
@@ -25,8 +28,8 @@ generate_plot <- function(df, file_name, polar, filetype, color = "black", backg
       ggplot2::theme_void() +
       ggplot2::ggtitle(title) + 
       ggplot2::theme(
-        plot.background = element_rect(fill = background_color, size = 0),
-	plot.title = element_text(colour = color, size = 40, hjust = 0, vjust = 0)
+	plot.background = plot_background,
+	plot.title = title_element
         ) +
       ggplot2::coord_fixed() +
       ggplot2::coord_polar()
@@ -37,8 +40,8 @@ generate_plot <- function(df, file_name, polar, filetype, color = "black", backg
       ggplot2::theme_void() +
       ggplot2::ggtitle(title) + 
       ggplot2::theme(
-	plot.background = element_rect(fill = background_color, size = 0),
-	plot.title = element_text(colour = color, size = 40, hjust = 0, vjust = 0)
+	plot.background = plot_background,
+	plot.title = title_element
         ) +
       ggplot2::coord_fixed()
   }
